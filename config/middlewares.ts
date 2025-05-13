@@ -10,3 +10,8 @@ export default [
   'strapi::favicon',
   'strapi::public',
 ];
+
+export const cors = {
+  enabled: true,
+  origin: ['http://localhost:3000', 'https://api.barbieri-economie.com'], // Ajouter l'URL de ton frontend ici
+};
