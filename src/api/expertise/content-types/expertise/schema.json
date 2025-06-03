@@ -4,7 +4,8 @@
   "info": {
     "singularName": "expertise",
     "pluralName": "expertises",
-    "displayName": "Expertises"
+    "displayName": "Expertises",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -15,6 +16,16 @@
     },
     "description": {
       "type": "text"
+    },
+    "background": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": true
     }
   }
 }

@@ -376,6 +376,7 @@ export interface AdminUser extends Struct.CollectionTypeSchema {
 export interface ApiExpertiseExpertise extends Struct.CollectionTypeSchema {
   collectionName: 'expertises';
   info: {
+    description: '';
     displayName: 'Expertises';
     pluralName: 'expertises';
     singularName: 'expertise';
@@ -384,6 +385,10 @@ export interface ApiExpertiseExpertise extends Struct.CollectionTypeSchema {
     draftAndPublish: true;
   };
   attributes: {
+    background: Schema.Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios',
+      true
+    >;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
