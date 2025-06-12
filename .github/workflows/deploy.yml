@@ -46,7 +46,7 @@ jobs:
             echo "Deployment completed!"
 
       - name: Send Discord Notification
-        if: always()
+        if: success()
         uses: Ilshidur/action-discord@master
         env:
           DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK_URL }}
