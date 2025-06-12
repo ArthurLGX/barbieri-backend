@@ -36,7 +36,7 @@ jobs:
             echo "Pulling latest changes..."
             git pull origin master
             echo "Copying production environment file..."
-            cp .env.production .env
+            echo "${{ secrets.ENV_PRODUCTION }}" > .env
             echo "Installing dependencies..."
             npm ci
             echo "Building application..."
