@@ -39,6 +39,12 @@ jobs:
             git pull origin master
             echo "Copying production environment file..."
             echo "${{ secrets.ENV_PRODUCTION }}" > .env
+            echo "Converting .env to Unix format..."
+            dos2unix .env
+            echo "Checking .env file (without sensitive data)..."
+            grep -v "PASSWORD" .env
+            echo "Cleaning cache and build directories..."
+            rm -rf .cache build dist
             echo "Installing dependencies..."
             npm ci
             echo "Building application..."
