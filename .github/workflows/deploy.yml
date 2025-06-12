@@ -1,27 +1,47 @@
-name: Deploy to Production
+name: Deploy Strapi to VPS
 
 on:
   push:
-    branches:
-      - master
+    branches: [master]
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
+
     steps:
+      - uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: "18"
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build Strapi
+        run: npm run build
+
       - name: Deploy to VPS
         uses: appleboy/ssh-action@master
         with:
           host: ${{ secrets.VPS_HOSTNAME }}
           username: ${{ secrets.VPS_USERNAME }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
-          port: ${{ secrets.VPS_PORT }}
+          debug: true
           script: |
+            echo "Starting deployment..."
             cd /var/www/api.barbieri-economie.com/barbieri-backend/
+            echo "Current directory: $(pwd)"
+            echo "Pulling latest changes..."
             git pull origin master
-            npm install
+            echo "Installing dependencies..."
+            npm ci
+            echo "Building application..."
             npm run build
+            echo "Restarting application..."
             pm2 restart barbieri-backend
+            echo "Deployment completed!"
 
       - name: Send Discord Notification
         if: always()
