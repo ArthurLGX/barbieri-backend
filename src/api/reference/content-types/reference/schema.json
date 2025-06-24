@@ -40,6 +40,9 @@
     },
     "ordre": {
       "type": "integer"
+    },
+    "ville": {
+      "type": "string"
     }
   }
 }
