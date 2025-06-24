@@ -10,6 +10,7 @@
   "options": {
     "draftAndPublish": true
   },
+  "pluginOptions": {},
   "attributes": {
     "nom": {
       "type": "string"
@@ -36,6 +37,9 @@
     },
     "annee": {
       "type": "string"
+    },
+    "ordre": {
+      "type": "integer"
     }
   }
 }
