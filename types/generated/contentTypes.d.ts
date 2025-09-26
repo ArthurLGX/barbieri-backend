@@ -469,6 +469,9 @@ export interface ApiReferenceReference extends Struct.CollectionTypeSchema {
     nom: Schema.Attribute.String;
     ordre: Schema.Attribute.Integer;
     publishedAt: Schema.Attribute.DateTime;
+    slug: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.Unique;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
